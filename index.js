@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Setup database
 const db = new sqlite3.Database('./database.sqlite', (err) => {
     if (err) console.error(err.message);
-    console.log('Connected to the SQLite database.');
+    console.log('Connected to SQLite database.');
 });
 
 // Buat tabel jika belum ada
@@ -25,7 +25,7 @@ db.run(`
     )
 `);
 
-// Endpoint register
+// Endpoint untuk halaman register
 app.post('/register', (req, res) => {
     const { fullname, username, whatsapp, password } = req.body;
     const query = `INSERT INTO users (fullname, username, whatsapp, password) VALUES (?, ?, ?, ?)`;
@@ -43,7 +43,7 @@ app.post('/register', (req, res) => {
     });
 });
 
-// Endpoint login
+// Endpoint untuk halaman login
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     const query = `SELECT * FROM users WHERE username = ? AND password = ?`;
